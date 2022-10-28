@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code4All Recruitment Responses</title>
+    <style>
+        
+
+/* style table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f1f1f1;
+  font-weight: 600;
+}
+
+
+td {
+  padding: 5px 5px;
+  text-align: left;
+}
+
+    </style>
+
+<body>
+
+    <!-- {"name":"hea","email":"jnsud@gajda.com","wphone":"1029102","yearofgrad":"2-12o","branch":"1kjad","resume":"akssk","position":"ajsd","anything":"nasd"} -->
+    <div class="container">
+
+        Results of Code4All
+        <table>
+            <thead>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Whatsapp Number</td>
+                <td>Year of Graduation</td>
+                <td>Branch</td>
+                <td>Resume</td>
+                <td>Position</td>
+                <td>Anything</td>
+            </thead>
+            <tbody id="tbody">
+
+                </tbody>
+        </table>
+
+    </div>
+
+    <!-- Import jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // 
+        $(document).ready(function () {
+            // Post Request to https://ecellrgpv.com/api/c4a/results
+
+            $.ajax({
+                url: "https://ecellrgpv.com/api/c4a/results",
+                type: "POST",
+                success: function (responses) {
+                    // console.log(responses);
+                    responses.forEach(response => {
+                        // console.log(response);
+                        var data = JSON.parse(response.data);
+                        console.log(data);
+                        var html = `<tr>
+                        <td>${data.name}</td>
+                        <td>${data.email}</td>
+                        <td>${data.wphone}</td>
+                        <td>${data.yearofgrad}</td>
+                        <td>${data.branch}</td>
+                        <td>${data.resume}</td>
+                        <td>${data.position}</td>
+                        <td>${data.anything}</td>
+                        </tr>`;
+                        $("#tbody").append(html);
+                        
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
